@@ -74,3 +74,7 @@ admin:
   help_unregister: "&e/ls unregister <Spieler> - &7Löscht die Registrierung eines Spielers."
   help_changepass: "&e/ls changepass <Spieler> <neues_Passwort> - &7Ändert das Passwort eines Spielers."
   help_forcelogin: "&e/ls forcelogin <Spieler> - &7Zwingt einen ausgeloggten Online-Spieler zum Einloggen."
+update:
+  available_console: "Eine neue Version von LoginSystem ist verfügbar: {new_version} (Sie verwenden Version {current_version})"
+  notification_player: "&aEine neue Version von &eLoginSystem &aist verfügbar: &e{new_version}"
+  update_check_failed: "Update-Prüfung fehlgeschlagen: {exception_message}"
