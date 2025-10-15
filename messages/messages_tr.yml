@@ -74,3 +74,7 @@ admin:
   help_unregister: "&e/ls unregister <player> - &7Bir oyuncunun kaydını siler."
   help_changepass: "&e/ls changepass <player> <new_password> - &7Oyuncunun şifresini değiştirir."
   help_forcelogin: "&e/ls forcelogin <player> - &7Çıkış yapmış bir çevrimiçi oyuncuyu giriş yapmaya zorlar."
+update:
+  available_console: "LoginSystem'ın yeni bir sürümü mevcuttur: {new_version} (Şu anda {current_version} sürümünü kullanıyorsunuz)"
+  notification_player: "&eLoginSystem&a'ın yeni bir sürümü mevcuttur: &e{new_version}"
+  update_check_failed: "Güncelleme kontrolü başarısız: {exception_message}"
