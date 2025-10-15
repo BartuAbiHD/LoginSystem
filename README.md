@@ -1,9 +1,5 @@
 # LoginSystem
 
-![Java CI with Maven](https://github.com/BartuAbiHD/LoginSystem/actions/workflows/maven.yml/badge.svg)
-[![SpigotMC Downloads](https://img.shields.io/spigot/downloads/86070?label=SpigotMC%20Downloads)](https://www.spigotmc.org/resources/loginsystem.86070/)
-[![SpigotMC Rating](https://img.shields.io/spigot/rating/86070?label=SpigotMC%20Rating)](https://www.spigotmc.org/resources/loginsystem.86070/)
-[![GitHub license](https://img.shields.io/github/license/BartuAbiHD/LoginSystem)](https://github.com/BartuAbiHD/LoginSystem/blob/main/LICENSE)
 [![GitHub license](https://img.shields.io/github/license/BartuAbiHD/LoginSystem)](https://github.com/BartuAbiHD/LoginSystem/blob/main/LICENSE)
 
 **A modern, secure, and highly customizable authentication plugin for Spigot/Paper servers [1.8 - 1.21+]**
