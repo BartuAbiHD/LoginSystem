@@ -4,7 +4,7 @@ error:
   already_logged_in: "&cZaten giriş yapmış durumdasın!"
   not_logged_in: "&cBu komutu kullanmak için giriş yapmalısın."
   generic: "&cBir hata oluştu: {error}"
-  player_data_not_found: "Player data not found"
+  player_data_not_found: "Oyuncu verisi bulunamadı"
 register:
   usage: "&eKullanım: /register <şifre> <şifreTekrar>"
   password_mismatch: "&cŞifreler eşleşmiyor! Lütfen tekrar dene."
@@ -51,6 +51,7 @@ email:
 join:
   login_prompt: "&aLütfen /login <şifre> komutu ile giriş yapın."
   register_prompt: "&bHoş geldin! Lütfen /register <şifre> <şifreTekrar> komutu ile kayıt ol."
+  you_cannot_chat_without_logging_in: "Giriş yapmadan sohbet edemezsiniz!"
   kick_timeout: "&cGiriş yapmak için çok uzun süre bekledin!"
-  kick_not_registered: "&cBu sunucuya girmek için kayıtlı olmalısınız."
+  kick_not_registered: "&cYalnızca kayıtlı kullanıcılar sunucuya katılabilir! Kayıt olmak için lütfen &ahttps://orneksite.com &cadresini ziyaret edin!"
   kick_already_online: "&cBu hesap zaten sunucuda aktif!"
