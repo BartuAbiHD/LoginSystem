@@ -1,0 +1,88 @@
+name: LoginSystem
+version: 2.0
+main: me.bartuabihd.loginsystem.LoginSystem
+api-version: 1.13
+author: BartuAbiHD
+description: Advanced authentication plugin with multi-database support.
+
+commands:
+  loginsystem:
+    description: Main administrator command for the LoginSystem plugin.
+    aliases: [ls]
+  login:
+    description: Allows you to log in to the server.
+    usage: /login <password>
+    aliases:
+      - l
+      - giris
+      - girisyap
+      - oturumac
+  register:
+    description: Allows you to register on the server.
+    usage: /register <password> <confirmPassword>
+    aliases:
+      - reg
+      - kayit
+      - kayitol
+      - kaydol
+  unregister:
+    description: Deletes your registration from the server.
+    usage: /unregister <password>
+    aliases:
+      - kayitsil
+      - kaydisil
+  logout:
+    description: Allows you to log out securely.
+    usage: /logout
+    aliases:
+      - cikisyap
+      - oturumkapat
+  changepassword:
+    description: Allows you to change your password.
+    usage: /changepassword <oldPassword> <newPassword>
+    aliases:
+      - changepass
+      - changepw
+      - sifredegis
+  email:
+    description: Allows you to manage your email address.
+    usage: /email <add|change> <emailAddress>
+    aliases: [eposta]
+
+permissions:
+  loginsystem.admin:
+    description: Grants access to all LoginSystem admin commands.
+    default: op
+    children:
+      loginsystem.admin.reload: true
+      loginsystem.admin.help: true
+      loginsystem.admin.register: true
+      loginsystem.admin.unregister: true
+      loginsystem.admin.changepass: true
+      loginsystem.admin.forcelogin: true
+      loginsystem.admin.lang: true
+      loginsystem.admin.update: true
+  loginsystem.admin.reload:
+    description: Permission to use the /ls reload command.
+    default: op
+  loginsystem.admin.help:
+    description: Permission to use the /ls help command.
+    default: op
+  loginsystem.admin.register:
+    description: Permission to forcibly register another player.
+    default: op
+  loginsystem.admin.unregister:
+    description: Permission to delete another player's registration.
+    default: op
+  loginsystem.admin.changepass:
+    description: Permission to change another player's password.
+    default: op
+  loginsystem.admin.forcelogin:
+    description: Permission to force-login an online player.
+    default: op
+  loginsystem.admin.lang:
+    description: Permission to use the /ls lang command.
+    default: op
+  loginsystem.admin.update:
+    description: Receives update notifications upon joining.
+    default: op
