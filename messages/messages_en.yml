@@ -74,3 +74,7 @@ admin:
   help_unregister: "&e/ls unregister <player> - &7Deletes a player's registration."
   help_changepass: "&e/ls changepass <player> <new_password> - &7Changes a player's password."
   help_forcelogin: "&e/ls forcelogin <player> - &7Forces a logged-out online player to log in."
+update:
+  available_console: "A new version of LoginSystem is available: {new_version} (You are using {current_version})"
+  notification_player: "&aA new version of &eLoginSystem &ais available: &e{new_version}"
+  update_check_failed: "Update check failed: {exception_message}"
