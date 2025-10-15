@@ -9,8 +9,7 @@
 
 LoginSystem is a high-performance authentication plugin designed from the ground up to maximize your server's security. All database operations run **asynchronously**, ensuring your server remains lag-free.
 
-![Plugin Screenshot](https://i.imgur.com/new_login_screenshot.png)
-*(Bu linki kendi ekran görüntünüzle değiştirebilirsiniz)*
+![Plugin Screenshot](https://proxy.spigotmc.org/04cb2bc1c6b54b403e92d49f2a4e93b3c4b9f81a/68747470733a2f2f692e6962622e636f2f46624d6a687977702f53637265656e73686f742d3432322e706e67)
 
 ---
 
