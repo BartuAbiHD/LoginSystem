@@ -1,0 +1,125 @@
+# LoginSystem Plugin Configuration by BartuAbiHD
+
+# Verilerin hangi yöntemle saklanacağını belirtin.
+# Mevcut seçenekler: sqlite, h2, mysql, mariadb, postgresql, mongodb
+storage:
+  type: sqlite
+
+# H2 ayarları (eğer type olarak h2 seçilirse kullanılır)
+h2:
+  # Eklenti klasöründe oluşturulacak veritabanı dosyasının adı (uzantısız).
+  # Örneğin: 'loginsystem_data' -> plugins/LoginSystem/loginsystem_data.mv.db dosyası oluşur.
+  filename: "loginsystem_data"
+
+# MySQL/MariaDB ayarları
+database:
+  host: "localhost"
+  port: 3306
+  dbname: "loginsystem"
+  user: "root"
+  password: "password"
+
+# PostgreSQL ayarları
+postgresql:
+  host: "localhost"
+  port: 5432
+  dbname: "loginsystem"
+  user: "postgres"
+  password: "password"
+
+# MongoDB ayarları
+mongodb:
+  # Örnek bağlantı URI'si. Kendi sunucu bilgilerine göre düzenle.
+  # Basit yapı: "mongodb://host:port"
+  # Authentication ile: "mongodb://user:password@host:port/?authSource=admin"
+  connection-uri: "mongodb://localhost:27017"
+  database: "loginsystem"
+
+settings:
+
+  # Kullanılacak dil dosyasını belirtir.
+  # Örnek: en, tr, de
+  messagesLanguage: "en"
+
+  security:
+    # Minimum şifre uzunluğu.
+    minPasswordLength: 6
+    # Maksimum şifre uzunluğu.
+    passwordMaxLength: 32
+    # Kullanılacak şifreleme algoritması.
+    # Seçenekler: SHA256, BCRYPT, MD5
+    # DİKKAT: MD5 gibi eski ve güvensiz algoritmaları kullanmaktan kaçının.
+    passwordHash: "BCRYPT"
+    # Eğer bir şifre kontrolü başarısız olursa, LoginSystem aşağıdaki algoritmalarla da
+    # kontrol etmeye çalışacaktır. Bu ayar, bir şifreleme yönteminden diğerine geçerken kullanışlıdır.
+    # LoginSystem, eski yöntemle eşleşen şifreyi otomatik olarak yeni yönteme güncelleyecektir.
+    # legacyHashes:
+    # - 'SHA1'
+    # - 'MD5'
+    legacyHashes: []
+
+    # Güvenli olmayan (kolay tahmin edilebilir) şifrelerin kullanılmasını engelleyin.
+    # Liste küçük harfe duyarsızdır.
+    unsafePasswords:
+      - '123456'
+      - 'password'
+      - 'qwerty'
+      - '12345'
+      - '54321'
+      - '123456789'
+      - 'help'
+      - 'test'
+      - 'deneme'
+
+  restrictions:
+    # Kimliği doğrulanmamış oyuncular sohbet edebilir mi?
+    # Bu ayar, aşağıdaki listede olmayan tüm komutları da engeller.
+    allowChat: false
+    # Sohbet, kimliği doğrulanmamış oyunculardan gizlensin mi?
+    hideChat: false
+
+    # Kimliği doğrulanmamış oyuncular için izin verilen komutlar.
+    allowCommands:
+      - /login
+      - /register
+      - /l
+      - /reg
+
+    # IP başına izin verilen maksimum kayıt sayısı.
+    # 0 değeri sınırsız kayıt anlamına gelir!
+    maxRegPerIp: 2
+
+    # İzin verilen minimum kullanıcı adı uzunluğu.
+    minNicknameLength: 3
+    # İzin verilen maksimum kullanıcı adı uzunluğu.
+    maxNicknameLength: 16
+
+    # Bu ayar etkinken, zaten çevrimiçi olan bir oyuncu "Başka bir konumdan giriş yapıldı"
+    # nedeniyle atılamaz. Bu, potansiyel güvenlik açıklarını önler.
+    ForceSingleSession: true
+
+    ForceSpawnLocOnJoin:
+      # Etkinse, 'worlds' listesindeki dünyalardan birinde doğan her oyuncu,
+      # başarılı bir kimlik doğrulamasından sonra o dünyanın başlangıç noktasına ışınlanır.
+      # Oyuncunun çıkış konumu üzerine yazılır.
+      enabled: false
+      # Spawn'a ışınlanmanın zorunlu olduğu dünya adları (Büyük/küçük harfe duyarlı!)
+      worlds:
+        - world
+        - world_nether
+
+    # Kayıtlı olmayan oyuncular hemen atılsın mı?
+    kickNonRegistered: false
+    # Yanlış şifre girildiğinde oyuncu atılsın mı?
+    kickOnWrongPassword: true
+
+    # Giriş yapmayan veya kayıt olmayan oyuncular kaç saniye sonra atılsın?
+    # Devre dışı bırakmak için 0 yapın.
+    timeout: 30
+
+    # Oyuncu adında izin verilen karakterler için Regex deseni.
+    allowedNicknameCharacters: "[a-zA-Z0-9_]*"
+    # Şifrede izin verilen karakterler için Regex deseni.
+    allowedPasswordCharacters: "[!-~]*"
+    # E-postada izin verilen karakterler için Regex deseni.
+    allowedEmailCharacters: "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$"
