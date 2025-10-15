@@ -1,17 +1,17 @@
 # LoginSystem Plugin Configuration by BartuAbiHD
 
-# Verilerin hangi yöntemle saklanacağını belirtin.
-# Mevcut seçenekler: sqlite, h2, mysql, mariadb, postgresql, mongodb
+# Specify which method to use for data storage.
+# Available options: sqlite, h2, mysql, mariadb, postgresql, mongodb
 storage:
   type: sqlite
 
-# H2 ayarları (eğer type olarak h2 seçilirse kullanılır)
+# H2 settings (used if type is set to h2)
 h2:
-  # Eklenti klasöründe oluşturulacak veritabanı dosyasının adı (uzantısız).
-  # Örneğin: 'loginsystem_data' -> plugins/LoginSystem/loginsystem_data.mv.db dosyası oluşur.
+  # The name of the database file to be created in the plugin's folder (without extension).
+  # For example: 'loginsystem_data' -> creates plugins/LoginSystem/loginsystem_data.mv.db
   filename: "loginsystem_data"
 
-# MySQL/MariaDB ayarları
+# MySQL/MariaDB settings
 database:
   host: "localhost"
   port: 3306
@@ -19,7 +19,7 @@ database:
   user: "root"
   password: "password"
 
-# PostgreSQL ayarları
+# PostgreSQL settings
 postgresql:
   host: "localhost"
   port: 5432
@@ -27,39 +27,44 @@ postgresql:
   user: "postgres"
   password: "password"
 
-# MongoDB ayarları
+# MongoDB settings
 mongodb:
-  # Örnek bağlantı URI'si. Kendi sunucu bilgilerine göre düzenle.
-  # Basit yapı: "mongodb://host:port"
-  # Authentication ile: "mongodb://user:password@host:port/?authSource=admin"
+  # Example connection URI. Edit according to your own server information.
+  # Simple structure: "mongodb://host:port"
+  # With authentication: "mongodb://user:password@host:port/?authSource=admin"
   connection-uri: "mongodb://localhost:27017"
   database: "loginsystem"
 
 settings:
 
-  # Kullanılacak dil dosyasını belirtir.
-  # Örnek: en, tr, de
+  # Check for new updates on SpigotMC when the server starts.
+  update_checker:
+    enabled: true
+
+  # Specifies the language file to be used.
+  # Example: en, tr, az, de
+  # A list of all available languages can be found at: https://github.com/BartuAbiHD/LoginSystem/tree/main/messages
   messagesLanguage: "en"
 
   security:
-    # Minimum şifre uzunluğu.
+    # Minimum password length.
     minPasswordLength: 6
-    # Maksimum şifre uzunluğu.
+    # Maximum password length.
     passwordMaxLength: 32
-    # Kullanılacak şifreleme algoritması.
-    # Seçenekler: SHA256, BCRYPT, MD5
-    # DİKKAT: MD5 gibi eski ve güvensiz algoritmaları kullanmaktan kaçının.
-    passwordHash: "BCRYPT"
-    # Eğer bir şifre kontrolü başarısız olursa, LoginSystem aşağıdaki algoritmalarla da
-    # kontrol etmeye çalışacaktır. Bu ayar, bir şifreleme yönteminden diğerine geçerken kullanışlıdır.
-    # LoginSystem, eski yöntemle eşleşen şifreyi otomatik olarak yeni yönteme güncelleyecektir.
+    # The hashing algorithm to be used.
+    # Options: SHA256, BCRYPT, MD5
+    # WARNING: Avoid using old and insecure algorithms like MD5.
+    passwordHash: "SHA256"
+    # If a password check fails, LoginSystem will also try to check with the following algorithms.
+    # This setting is useful when migrating from one hashing method to another.
+    # LoginSystem will automatically update the password to the new hash method if it matches a legacy one.
     # legacyHashes:
     # - 'SHA1'
     # - 'MD5'
     legacyHashes: []
 
-    # Güvenli olmayan (kolay tahmin edilebilir) şifrelerin kullanılmasını engelleyin.
-    # Liste küçük harfe duyarsızdır.
+    # Prevent unsafe (easily guessable) passwords from being used.
+    # The list is case-insensitive.
     unsafePasswords:
       - '123456'
       - 'password'
@@ -72,54 +77,60 @@ settings:
       - 'deneme'
 
   restrictions:
-    # Kimliği doğrulanmamış oyuncular sohbet edebilir mi?
-    # Bu ayar, aşağıdaki listede olmayan tüm komutları da engeller.
+    # Can unauthenticated players chat?
+    # This setting also blocks all commands not listed below.
     allowChat: false
-    # Sohbet, kimliği doğrulanmamış oyunculardan gizlensin mi?
+    # Should chat be hidden from unauthenticated players?
     hideChat: false
 
-    # Kimliği doğrulanmamış oyuncular için izin verilen komutlar.
+    # Allowed commands for unauthenticated players.
     allowCommands:
       - /login
       - /register
       - /l
       - /reg
+      - /giris
+      - /girisyap
+      - /oturumac
+      - /kayit
+      - /kayitol
+      - /kaydol
 
-    # IP başına izin verilen maksimum kayıt sayısı.
-    # 0 değeri sınırsız kayıt anlamına gelir!
+    # Maximum number of allowed registrations per IP.
+    # A value of 0 means unlimited registrations!
     maxRegPerIp: 2
 
-    # İzin verilen minimum kullanıcı adı uzunluğu.
+    # Minimum allowed username length.
     minNicknameLength: 3
-    # İzin verilen maksimum kullanıcı adı uzunluğu.
+    # Maximum allowed username length.
     maxNicknameLength: 16
 
-    # Bu ayar etkinken, zaten çevrimiçi olan bir oyuncu "Başka bir konumdan giriş yapıldı"
-    # nedeniyle atılamaz. Bu, potansiyel güvenlik açıklarını önler.
+    # When this setting is enabled, an already online player cannot be kicked due to "Logged in from another location".
+    # This prevents potential security exploits.
     ForceSingleSession: true
 
     ForceSpawnLocOnJoin:
-      # Etkinse, 'worlds' listesindeki dünyalardan birinde doğan her oyuncu,
-      # başarılı bir kimlik doğrulamasından sonra o dünyanın başlangıç noktasına ışınlanır.
-      # Oyuncunun çıkış konumu üzerine yazılır.
+      # If enabled, every player that joins in one of the worlds listed below will be teleported
+      # to the world's spawn point after successful authentication.
+      # The player's quit location will be overwritten.
       enabled: false
-      # Spawn'a ışınlanmanın zorunlu olduğu dünya adları (Büyük/küçük harfe duyarlı!)
+      # World names where forcing the spawn location is required (Case-sensitive!)
       worlds:
         - world
         - world_nether
 
-    # Kayıtlı olmayan oyuncular hemen atılsın mı?
+    # Should non-registered players be kicked immediately?
     kickNonRegistered: false
-    # Yanlış şifre girildiğinde oyuncu atılsın mı?
+    # Should players be kicked on wrong password?
     kickOnWrongPassword: true
 
-    # Giriş yapmayan veya kayıt olmayan oyuncular kaç saniye sonra atılsın?
-    # Devre dışı bırakmak için 0 yapın.
+    # After how many seconds should players who fail to login or register be kicked?
+    # Set to 0 to disable.
     timeout: 30
 
-    # Oyuncu adında izin verilen karakterler için Regex deseni.
+    # Regex pattern for allowed characters in player names.
     allowedNicknameCharacters: "[a-zA-Z0-9_]*"
-    # Şifrede izin verilen karakterler için Regex deseni.
+    # Regex pattern for allowed characters in passwords.
     allowedPasswordCharacters: "[!-~]*"
-    # E-postada izin verilen karakterler için Regex deseni.
+    # Regex pattern for allowed characters in emails.
     allowedEmailCharacters: "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$"
