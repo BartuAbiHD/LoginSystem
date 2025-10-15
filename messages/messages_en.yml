@@ -4,7 +4,7 @@ error:
   already_logged_in: "&cYou are already logged in!"
   not_logged_in: "&cYou must be logged in to use this command."
   generic: "&cAn error occurred: {error}"
-  player_data_not_found: "Oyuncu verisi bulunamadı"
+  player_data_not_found: "Player data not found"
 register:
   usage: "&eUsage: /register <password> <confirmPassword>"
   password_mismatch: "&cPasswords do not match! Please try again."
@@ -51,6 +51,7 @@ email:
 join:
   login_prompt: "&aPlease log in with /login <password>"
   register_prompt: "&bWelcome! Please register with /register <password> <confirmPassword>"
+  you_cannot_chat_without_logging_in: "You cannot chat without logging in!"
   kick_timeout: "&cYou took too long to log in!"
-  kick_not_registered: "&cYou must be registered to join this server."
+  kick_not_registered: "&cOnly registered users can join the server! Please visit &ahttps://example.com &cto register yourself!"
   kick_already_online: "&cThis account is already active on the server!"
